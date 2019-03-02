@@ -1,0 +1,45 @@
+body{
+  background-image: url("../images/shadows-of-empire-bkg.jpeg")
+}
+
+.title{
+  text-align: center;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 50px;
+  color: bisque;
+}
+.charArea{
+  width: 570px;
+  height: 150px;
+  margin: 0 auto 0 auto;
+  /* background: blue; */
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
+
+}
+
+.enemyArea{
+  width: 570px;
+  height: 150px;
+  margin: 0 auto 0 auto;
+  /* background: orangered; */
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
+}
+
+.fightArea{
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
+}
+.defendArea{
+   width: 570px;
+  height: 150px;
+  margin: 0 auto 0 auto;
+  /* background: red; */
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
+}
+
+.attkBtn{
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
