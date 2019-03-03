@@ -17,21 +17,21 @@ body{
 
 #yourChar,
 #defArea,
-#charSelect,
 #enemyArea{
-  width: 570px;
-  height: 150px;
+  width: 0 auto;
+  height: 0 auto;
 }
+.user,
+.enmyCard,
 .charCard {
+    font-size: 20px;
     border: 5px inset cadetblue;
     border-radius: 5px 20px 5px;
     background: orange; 
+
     
 }
 .charImg {
     width: 100px;
     height: 125px;
-/* #info,
-#attkBtn{
-  font-family: 'ZCOOL QingKe HuangYou', cursive;
-} */
+}
