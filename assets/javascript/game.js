@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-  //this declares the global variable of characters and sets the booleans of chosen character and chosen enemy to false xs
+  //this declares the global variable of characters, their individual attributes and sets the booleans of chosen character and chosen enemy to false 
   var charSelect = [
     {
       name: 'Dash Rendar',
@@ -32,11 +32,12 @@ $(document).ready(function () {
       img: 'assets/images/xizor.jpg'
     }
   ];
-  console.log(charSelect)
+
   var playerChosen = false;
   var enemyChosen = false;
-  // * When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
-  // this function sets up the character button and appends them to the character select are
+
+  // this function sets up the character button and appends them to the character select area 
+
   function initGame() {
     $('.gameArea').hide();
     for (var i = 0; i < charSelect.length; i++) {
@@ -54,25 +55,7 @@ $(document).ready(function () {
     $('#info').append(startText);
   };
 
-  // $(document).on('click', '.restart', function () {
-  //   playerIsChosen = false;
-  //   enemyIsChosen = false;
-  //   $('#charSelect').empty();
-  //   $('#yourChar').empty();
-  //   $('#defArea').empty();
-  //   $('#enemyArea').empty();
-  //   $('#info').empty();
-  //   initGame();
-  // });
-  // $(document).on('click', '.restart', function () {
-  //   playerIsChosen = false;
-  //   enemyIsChosen = false;
 
-  //   $('.charArea').empty();
-  //   $('.enemyArea').empty();
-  //   $('.defendArea').empty();
-  //   // $('#gameText').empty();
-  //   start();
 
   // // thomas notes
   // Char(charSelect[0]) {
