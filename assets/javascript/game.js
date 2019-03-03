@@ -1,71 +1,120 @@
-// * When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
-var charSelect = [
-  {
-    name: 'Dash Rendar',
-    health: 120,
-    attack: 8,
-    counterAtk: 10,
-    img: "assets/images/dash-rendar.jpg"
-  },
-  {
-    name: 'IG-88',
-    health: 90,
-    attack: 7,
-    counterAtk: 20,
-    img: "assets/images/ig-88.jpg"
-  },
-  {
-    name: 'Imerial Royal Guard',
-    health: 150,
-    attack: 7,
-    counterAtk: 12,
-    img: "assets/images/imperial-royal-guard.jpg"
-  },
-  {
-    name: 'Xizor',
-    health: 120,
-    attack: 8,
-    counterAtk: 15,
-    img: "assets/images/xizor.jpg"
-  }
-];
-Char(charSelect[0]) {
-  $("<img></img>").src(object.img)
-}
-renderChar(charSelect[0])
+$(document).ready(function () {
 
-$('<div>').src(charSelect[i].img)
-charSelect[i]
-//   * The player must then defeat all of the remaining fighters.Enemies should be moved to a different area of the screen.
 
-//    * The player chooses an opponent by clicking on an enemy's picture.
+  //this declares the global variable of characters and sets the booleans of chosen character and chosen enemy to false xs
+  var charSelect = [
+    {
+      name: 'Dash Rendar',
+      health: 120,
+      attack: 8,
+      counterAtk: 10,
+      img: 'assets/images/dash-rendar.jpg'
+    },
+    {
+      name: 'IG-88',
+      health: 90,
+      attack: 7,
+      counterAtk: 20,
+      img: 'assets/images/ig-88.jpg'
+    },
+    {
+      name: 'Royal Guard',
+      health: 150,
+      attack: 7,
+      counterAtk: 12,
+      img: 'assets/images/imperial-royal-guard.jpg'
+    },
+    {
+      name: 'Xizor',
+      health: 120,
+      attack: 8,
+      counterAtk: 15,
+      img: 'assets/images/xizor.jpg'
+    }
+  ];
+  console.log(charSelect)
+  var playerChosen = false;
+  var enemyChosen = false;
+  // * When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
+  // this function sets up the character button and appends them to the character select are
+  function initGame() {
+    $('.gameArea').hide();
+    for (var i = 0; i < charSelect.length; i++) {
+      var charBtn = $('<button>');
+      charBtn.addClass('charCard');
+      charBtn.attr('name', charSelect[i].name);
+      charBtn.attr('health', charSelect[i].health);
+      charBtn.attr('attack', charSelect[i].attack);
+      charBtn.attr('counter', charSelect[i].counterAtk);
+      charBtn.append("<p>" + charSelect[i].name + "</p><img src='" + charSelect[i].img + "'class='charImg'><br><p class='health'>Life: " + charSelect[i].health + "</p>");
+      $('#charSelect').append(charBtn);
+    }
+    var startText = $('<p>');
+    startText.append('Choose your character.');
+    $('#info').append(startText);
+  };
 
-//   * Once the player selects an opponent, that enemy is moved to a`defender area`.
+  // $(document).on('click', '.restart', function () {
+  //   playerIsChosen = false;
+  //   enemyIsChosen = false;
+  //   $('#charSelect').empty();
+  //   $('#yourChar').empty();
+  //   $('#defArea').empty();
+  //   $('#enemyArea').empty();
+  //   $('#info').empty();
+  //   initGame();
+  // });
+  // $(document).on('click', '.restart', function () {
+  //   playerIsChosen = false;
+  //   enemyIsChosen = false;
 
-//    * The player will now be able to click the`attack` button.
-//      * Whenever the player clicks`attack`, their character damages the defender.The opponent will lose`HP`(health points).These points are displayed at the bottom of the defender's picture. 
-//   * The opponent character will instantly counter the attack.When that happens, the player's character will lose some of their `HP`. These points are shown at the bottom of the player character's picture.
+  //   $('.charArea').empty();
+  //   $('.enemyArea').empty();
+  //   $('.defendArea').empty();
+  //   // $('#gameText').empty();
+  //   start();
 
-// 3. The player will keep hitting the attack button in an effort to defeat their opponent.
+  // // thomas notes
+  // Char(charSelect[0]) {
+  //   $('<img></img>').src(object.img)
+  // }
+  // renderChar(charSelect[0])
 
-//    * When the defender's `HP` is reduced to zero or below, remove the enemy from the `defender area`. The player character can now choose a new opponent.
+  // $('<div>').src(charSelect[i].img)
+  // charSelect[i]
+  //
 
-// 4. The player wins the game by defeating all enemy characters.The player loses the game the game if their character's `HP` falls to zero or below.
 
-// ##### Option 2 Game design notes
 
-//   * Each character in the game has 3 attributes: `Health Points`, `Attack Power` and`Counter Attack Power`.
+  //everything starts/resets to all characters in '.charArea'
+  //
+  // var yourCharacter = $('.charArea')
+  // for (var i = 0; i < charSelect.length; i++) {
+  //   console.log(charSelect)
+  // }
 
-// * Each time the player attacks, their character's Attack Power increases by its base Attack Power. 
-//   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6(12, 18, 24, 30 and so on).
-// * The enemy character only has`Counter Attack Power`. 
 
-//   * Unlike the player's `Attack Points`, `Counter Attack Power` never changes.
+  //function for selecting character one is chosen on click and stays in '.charArea' until loss 
+  //then the rest move to '.enemyArea'
 
-//   * The`Health Points`, `Attack Power` and`Counter Attack Power` of each character must differ.
+  //from here
 
-// * No characters in the game can heal or recover Health Points. 
+  //click on '.enemyArea' to select a character to then move to '.defendArea' the other 2 images stay in '.enemyArea'
+  // if win player must choose another char from the '.enemyArea'
+  //if win2 must choose another char from the '.enemyArea'
+  //if win3 must choose another char from the '.enemyArea'
+  // if at anytime lose (health to zero)game restarts
 
-//   * A winning player must pick their characters wisely by first fighting an enemy with low`Counter Attack Power`.This will allow them to grind`Attack Power` and to take on enemies before they lose all of their`Health Points`.Healing options would mess with this dynamic.
 
-// * Your players should be able to win and lose the game no matter what character they choose.The challenge should come from picking the right enemies, not choosing the strongest player.
+
+
+  //Battle Mechanic
+  // click the '.attkBtn' to trigger fight event btwn your character and and chosen enemy                    //after every 'attack' your character gains plus base attack  
+  //
+  //
+  //
+
+  // });
+
+  initGame();
+});
