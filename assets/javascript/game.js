@@ -5,28 +5,28 @@ $(document).ready(function () {
       name: 'Dash Rendar',
       health: 120,
       attack: 8,
-      counterAtk: 10,
+      counter: 10,
       img: 'assets/images/dash-rendar.jpg'
     },
     {
       name: 'IG-88',
       health: 90,
       attack: 7,
-      counterAtk: 20,
+      counter: 20,
       img: 'assets/images/ig-88.jpg'
     },
     {
       name: 'Royal Guard',
       health: 150,
       attack: 7,
-      counterAtk: 12,
+      counter: 12,
       img: 'assets/images/imperial-royal-guard.jpg'
     },
     {
       name: 'Xizor',
       health: 120,
       attack: 8,
-      counterAtk: 15,
+      counter: 15,
       img: 'assets/images/xizor.jpg'
     }
   ];
@@ -44,11 +44,11 @@ $(document).ready(function () {
       charBtn.attr('name', charSelect[i].name);
       charBtn.attr('health', charSelect[i].health);
       charBtn.attr('attack', charSelect[i].attack);
-      charBtn.attr('counter', charSelect[i].counterAtk);
-      charBtn.append("<p>" + charSelect[i].name + "</p><img src='" + charSelect[i].img + "'class='charImg'><br><p class='health'>Life: " + charSelect[i].health + "</p>");
+      charBtn.attr('counter', charSelect[i].counter);
+      charBtn.append("<p>" + charSelect[i].name + "</p><img src='" + charSelect[i].img + "'class='charImg'><br><p class='life'>Life: " + charSelect[i].health + "</p>");
       $('#charSelect').append(charBtn);
     }
-    // in the same function im appending a new "paragraph" with text 
+    // in the same function append a new "p" tag with text 
     var startText = $('<p>');
     startText.append('Choose your character. Do. Or do not. There is no try.');
     $('#info').append(startText);
@@ -90,47 +90,131 @@ $(document).ready(function () {
       enemyChosen = true;
       //adds new 'p' tag to the info section
       var atk = $('<p>');
-      atk.append('Use the attack button to fight.')
+      atk.append('Use the attack button to fight.');
       $('#info').append(atk);
     }
   });
-  //
+  ///Battle Mechanic
+  // click the '.attkBtn' to trigger fight event btwn your character and and chosen enemy                     
+  $(document).on('click', '#attkBtn', function () {
+    var userCharName = $('#yourChar').children().attr('name');
+    var userCharHealth = $('#yourChar').children().attr('health');
+    var userCharAttk = $('#yourChar').children().attr('attack');
+    var compCharName = $('#defArea').children().attr('name');
+    var compCharHealth = $('#defArea').children().attr('health');
+    var compCharAtk = $('#defArea').children().attr('counter');
+    //player and enemy are chosen now the fun begins
+    if (playerChosen && enemyChosen && userCharHealth > 0) {
+      $('#info').empty();
+      compCharHealth -= userCharAttk;
+      $('#defArea').children().attr('health', compCharHealth);
+      $('#defArea .life').text("Life: " + compCharHealth);
+      //enemy counter attack
+      userCharHealth -= compCharAtk;
+      $('#yourChar').children().attr('health', userCharHealth);
+      $('#yourChar .life').text("Life: " + userCharHealth);
+      var fightText = $('<p>');
+      fightText.append(userCharName + " attacked " + compCharName + " for " + userCharAttk + " life.<br>" + compCharName + " attacked you for " + compCharAtk + " life.");
+      $('#info').append(fightText);
 
-  // // thomas notes
-  // Char(charSelect[0]) {
-  //   $('<img></img>').src(object.img)
-  // }
-  // renderChar(charSelect[0])
+      //after every 'attack' your character gains plus base attack 
+      if ($('#yourChar').children().length > 0 && $('#defArea').children().length > 0 && userCharHealth > 0) {
+        for (var i = 0; i < charSelect.length; i++) {
+          if (charSelect[i].name == userCharName) {
+            var baseAtkPwr = charSelect[i].attack;
+          };
+        };
+        userCharAttk = parseInt(userCharAttk) + parseInt(baseAtkPwr);
+        $('#yourChar').children().attr('attack', userCharAttk);
+        console.log(userCharAttk);
+      };
+      // for loop starting after player has beaten enemy 
+      if (compCharHealth <= 0) {
+        $('#info').empty();
+        $('#defArea').empty();
+        enemyChosen = false;
+        var winText = $('<p>');
+        winText.append(userCharName + ' has vanquished ' + compCharName + '. Select another opponent.');
+        $('#info').append(winText);
+      }//sest win conditions 
+      if ($('#enemyArea').children().length == 0 && $('#defArea').children().length == 0 && playerChosen) {
+        $('#info').empty();
+        $('#attkBtn').hide();
+        var winner = $('<p>');
+        winner.append('You won by using the Force!');
 
-  // $('<div>').src(charSelect[i].img)
-  // charSelect[i]
-  //
+        //trigger restart button upon win
+        var pgBr = $('<br>');
+        winner.append(pgBr);
+        var reset = $('<button>Reset</button>');
+        reset.addClass('btn btn-warning reset');
+        pgBr.append(reset);
+        $('#info').append(winner);
+      }//trigger reset button upon loss
+      if (userCharHealth <= 0) {
+        $('#info').empty();
+        $('#attkBtn').hide();
+        var defeat = $('<p>');
+        defeat.append('Game Over! ');
 
+        var pgBr = $('<br>');
+        defeat.append(pgBr);
+        var reset = $('<button>Reset</button>');
+        reset.addClass('btn btn-warning reset');
+        defeat.append(pgBr);
+        $('#info').append(defeat);
+      }
+    } else if (playerChosen && !enemyChosen && $('#enemyArea').children().length > 0) {
+      $('#info').empty();
+      var enemySel = $('<p>');
+      enemySel.append('Choose an opponent');
+      $('#info').append(enemySel);
+    } else if (!playerChosen) {
+      $('#info').empty();
+      var charSel = $('<p>');
+      charSel.append('Choose Your Character');
+      $('#info').append(charSel);
+    }
+  });
 
-
-
-
-
-
-
-
-
-
-  // if win player must choose another char from the '.enemyArea'
-  //if win2 must choose another char from the '.enemyArea'
-  //if win3 must choose another char from the '.enemyArea'
-  // if at anytime lose (health to zero)game restarts
-
-
-
-
-  //Battle Mechanic
-  // click the '.attkBtn' to trigger fight event btwn your character and and chosen enemy                    //after every 'attack' your character gains plus base attack  
-  //
-  //
-  //
-
-  // });
+  $(document).on('click', '.reset', function () {
+    playerChosen = false;
+    enemyChosen = false;
+    $('#charSelect').empty();
+    $('#yourChar').empty();
+    $('#defArea').empty();
+    $('#enemyArea').empty();
+    $('#info').empty();
+    initGame();
+  });
 
   initGame();
 });
+
+
+
+
+   // thomas notes
+      // Char(charSelect[0]) {
+      //   $('<img></img>').src(object.img)
+      // }
+      // renderChar(charSelect[0])
+
+      // $('<div>').src(charSelect[i].img)
+      // charSelect[i]
+      //
+
+
+
+
+
+
+
+
+
+
+
+      // if win player must choose another char from the '.enemyArea'
+      //if win2 must choose another char from the '.enemyArea'
+      //if win3 must choose another char from the '.enemyArea'
+      // if at anytime lose (health to zero)game restarts
