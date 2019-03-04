@@ -20,7 +20,7 @@ $(document).ready(function () {
       health: 150,
       attack: 7,
       counter: 12,
-      img: 'assets/images/Imperial-royal-guard.jpg'
+      img: 'assets/images/imperial-royal-guard.jpg'
     },
     {
       name: 'Xizor',
