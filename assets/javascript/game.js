@@ -17,7 +17,7 @@ $(document).ready(function () {
     },
     {
       name: 'Royal Guard',
-      health: 150,
+      health: 200,
       attack: 7,
       counter: 12,
       img: 'assets/images/Imperial-royal-guard.jpg'
@@ -148,20 +148,22 @@ $(document).ready(function () {
         winner.append(pgBr);
         var reset = $('<button>Reset</button>');
         reset.addClass('btn btn-warning reset');
-        pgBr.append(reset);
+        winner.append(pgBr);
+        winner.append(reset);
         $('#info').append(winner);
       }//trigger reset button upon loss
       if (userCharHealth <= 0) {
         $('#info').empty();
         $('#attkBtn').hide();
         var defeat = $('<p>');
-        defeat.append//.text//('Game Over! ');
+        defeat.append('Game Over! ');
 
         var pgBr = $('<br>');
         defeat.append(pgBr);
         var reset = $('<button>Reset</button>');
         reset.addClass('btn btn-warning reset');
         defeat.append(pgBr);
+        defeat.append(reset);
         $('#info').append(defeat);
       }
     } else if (playerChosen && !enemyChosen && $('#enemyArea').children().length > 0) {
@@ -180,6 +182,7 @@ $(document).ready(function () {
   $(document).on('click', '.reset', function () {
     playerChosen = false;
     enemyChosen = false;
+    $('#attkBtn').show();
     $('#charSelect').empty();
     $('#yourChar').empty();
     $('#defArea').empty();
