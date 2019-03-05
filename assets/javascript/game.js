@@ -5,28 +5,28 @@ $(document).ready(function () {
       name: 'Dash Rendar',
       health: 120,
       attack: 8,
-      counter: 10,
+      counter: 15,
       img: 'assets/images/dash-rendar.jpg'
     },
     {
       name: 'IG-88',
-      health: 90,
-      attack: 7,
-      counter: 20,
+      health: 100,
+      attack: 14,
+      counter: 5,
       img: 'assets/images/ig-88.jpg'
     },
     {
       name: 'Royal Guard',
-      health: 200,
-      attack: 7,
-      counter: 12,
+      health: 150,
+      attack: 8,
+      counter: 20,
       img: 'assets/images/Imperial-royal-guard.jpg'
     },
     {
       name: 'Xizor',
-      health: 120,
-      attack: 8,
-      counter: 15,
+      health: 180,
+      attack: 7,
+      counter: 25,
       img: 'assets/images/xizor.jpg'
     }
   ];
