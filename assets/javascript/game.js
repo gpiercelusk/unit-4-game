@@ -20,7 +20,7 @@ $(document).ready(function () {
       health: 150,
       attack: 7,
       counter: 12,
-      img: 'assets/images/imperial-royal-guard.jpg'
+      img: 'assets/images/Imperial-royal-guard.jpg'
     },
     {
       name: 'Xizor',
@@ -136,7 +136,7 @@ $(document).ready(function () {
         var winText = $('<p>');
         winText.append(userCharName + ' has vanquished ' + compCharName + '. Select another opponent.');
         $('#info').append(winText);
-      }//sest win conditions 
+      }//sets win conditions 
       if ($('#enemyArea').children().length == 0 && $('#defArea').children().length == 0 && playerChosen) {
         $('#info').empty();
         $('#attkBtn').hide();
@@ -155,7 +155,7 @@ $(document).ready(function () {
         $('#info').empty();
         $('#attkBtn').hide();
         var defeat = $('<p>');
-        defeat.append('Game Over! ');
+        defeat.append//.text//('Game Over! ');
 
         var pgBr = $('<br>');
         defeat.append(pgBr);
