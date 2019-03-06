@@ -95,7 +95,7 @@ $(document).ready(function () {
     }
   });
   ///Battle Mechanic
-  // click the '.attkBtn' to trigger fight event btwn your character and and chosen enemy                     
+  // click the '#attkBtn' to trigger fight event btwn your character and and chosen enemy                     
   $(document).on('click', '#attkBtn', function () {
     var userCharName = $('#yourChar').children().attr('name');
     var userCharHealth = $('#yourChar').children().attr('health');
